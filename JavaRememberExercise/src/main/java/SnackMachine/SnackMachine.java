@@ -8,6 +8,6 @@ package SnackMachine;
  *
  * @author maltr
  */
-class Stack {
+class SnackMachine {
     
 }

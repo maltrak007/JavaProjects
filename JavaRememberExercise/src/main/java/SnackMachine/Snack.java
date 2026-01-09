@@ -17,11 +17,16 @@ public class Snack {
     private double snackPrice;
 
     public Snack(int idSnack, String snackName, double snackPrice) {
+        ++snackCounter;
         this.idSnack = idSnack;
         this.snackName = snackName;
         this.snackPrice = snackPrice;
     }
-
+    
+    public static int getSnackCounter() {
+        return snackCounter;
+    }
+    
     @Override
     public String toString() {
         return "{" + "idSnack=" + idSnack + ", snackName=" + snackName + ", snackPrice=" + snackPrice + '}';
