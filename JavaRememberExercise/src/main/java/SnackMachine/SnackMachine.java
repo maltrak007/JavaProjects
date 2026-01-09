@@ -15,10 +15,10 @@ import java.util.Scanner;
 class SnackMachine {
 
     public static void main(String[] args) {
-        MaquinaSnacks();
+        SnacksMachine();
     }
 
-    public static void MaquinaSnacks() {
+    public static void SnacksMachine() {
         Snacks snacks = new Snacks();
         ShowMenu();
         ExecuteOptions(snacks);

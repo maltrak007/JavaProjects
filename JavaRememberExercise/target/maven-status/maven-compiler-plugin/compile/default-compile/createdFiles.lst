@@ -7,7 +7,9 @@ SnackMachine\Snacks.class
 com\gonzalolinanaldana\javarememberexercise\Exercise4.class
 PruebaPersona\PruebaPersona.class
 com\gonzalolinanaldana\javarememberexercise\Exercise2.class
+FilesManagement\ReadFile.class
 com\gonzalolinanaldana\javarememberexercise\Exercise3.class
+FilesManagement\CreateFile.class
 com\gonzalolinanaldana\javarememberexercise\Exercise1.class
 com\gonzalolinanaldana\javarememberexercise\Exercise7.class
 SnackMachine\Snack.class
