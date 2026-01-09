@@ -4,6 +4,7 @@
  */
 package SnackMachine;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +16,11 @@ public class Snacks {
     
     private List<Snack> snackList;
 
-    public void AggregateSnack() {
+    public Snacks() {
+        this.snackList = new ArrayList<>();
+    }
+
+    public void AggregateSnack(Snack _snackToAdd) {
         Scanner scanner = new Scanner(System.in);
         IO.println("""
                *******Snack Creator**********
@@ -23,9 +28,10 @@ public class Snacks {
                     """);
         String newSnackName = scanner.nextLine();
         double newSnackPrice = GetValidPrice(scanner);
-        int newSnackUniqueID = GetValidSnackID(scanner);
-        Snack snackie = new Snack(newSnackUniqueID, newSnackName, newSnackPrice);
-        snackList.add(snackie);
+        _snackToAdd.setSnackName(newSnackName);
+        _snackToAdd.setSnackPrice(newSnackPrice);
+        snackList.add(_snackToAdd);
+        IO.println("Succesfully added snack to the list\n");
     }
 
     public void ShowSnackList() {
@@ -36,15 +42,14 @@ public class Snacks {
                 """);
         for(Snack _snack : snackList)
         {
-            _snack.toString();
+            IO.println(_snack.toString());
         }
     }   
 
-    /*
     public List<Snack> RetrieveSnacks() {
-        return 
+        return snackList;
     }
-     */
+    
     private double GetValidPrice(Scanner scanner) {
         try {
             IO.println("What's his price?");
@@ -54,20 +59,4 @@ public class Snacks {
             return GetValidPrice(scanner);
         }
     }
-    
-    private int GetValidSnackID(Scanner scanner)
-    {
-        /*
-        try {
-            IO.println("Specify an unique ID");
-            int finalSnackID = 
-            return Integer.parseInt(scanner.nextLine());
-        } catch (Exception e) {
-            IO.println("Invalid input. Try again.");
-            return GetValidSnackID(scanner); 
-        }
-        */
-        return 0;
-    }
-    
 }

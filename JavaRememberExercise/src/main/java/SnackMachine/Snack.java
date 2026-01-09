@@ -16,15 +16,42 @@ public class Snack {
     private String snackName;
     private double snackPrice;
 
-    public Snack(int idSnack, String snackName, double snackPrice) {
-        ++snackCounter;
-        this.idSnack = idSnack;
+    public Snack() {
+        this.idSnack = ++snackCounter;
+    }
+
+    public Snack(String snackName, double snackPrice) {
+        this();
         this.snackName = snackName;
         this.snackPrice = snackPrice;
     }
     
     public static int getSnackCounter() {
         return snackCounter;
+    }
+
+    public int getIdSnack() {
+        return idSnack;
+    }
+
+    public String getSnackName() {
+        return snackName;
+    }
+
+    public double getSnackPrice() {
+        return snackPrice;
+    }
+
+    public void setIdSnack(int idSnack) {
+        this.idSnack = idSnack;
+    }
+
+    public void setSnackName(String snackName) {
+        this.snackName = snackName;
+    }
+
+    public void setSnackPrice(double snackPrice) {
+        this.snackPrice = snackPrice;
     }
     
     @Override
