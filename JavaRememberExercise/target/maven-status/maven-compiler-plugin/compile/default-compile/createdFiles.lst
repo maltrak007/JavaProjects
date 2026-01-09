@@ -1,3 +1,4 @@
+Snack_Machine_Files\service\SnacksServiceFile.class
 SnackMachine\SnackMachine.class
 com\gonzalolinanaldana\javarememberexercise\Exercise5.class
 com\gonzalolinanaldana\javarememberexercise\Exercise6.class
@@ -5,13 +6,16 @@ SistemaVentas\Orden.class
 PruebaPersona\Persona.class
 SnackMachine\Snacks.class
 com\gonzalolinanaldana\javarememberexercise\Exercise4.class
+Snack_Machine_Files\presentation\SnackMachine.class
 PruebaPersona\PruebaPersona.class
+Snack_Machine_Files\service\ISnacksService.class
 com\gonzalolinanaldana\javarememberexercise\Exercise2.class
-FilesManagement\ReadFile.class
 com\gonzalolinanaldana\javarememberexercise\Exercise3.class
-FilesManagement\CreateFile.class
+Snack_Machine_Files\domain\Snack.class
 com\gonzalolinanaldana\javarememberexercise\Exercise1.class
+FilesManagement\FileManagement.class
 com\gonzalolinanaldana\javarememberexercise\Exercise7.class
 SnackMachine\Snack.class
 SistemaVentas\Producto.class
+Snack_Machine_Files\service\SnacksServiceList.class
 com\gonzalolinanaldana\javarememberexercise\JavaRememberExercise.class
