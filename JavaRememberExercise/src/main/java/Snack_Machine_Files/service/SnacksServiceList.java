@@ -13,47 +13,62 @@ import java.util.Scanner;
  *
  * @author maltr
  */
-public class SnacksServiceList implements ISnacksService{
-    
-    private List<Snack> snackList;
+public class SnacksServiceList implements ISnacksService {
+
     private SnacksServiceFile snackSF;
-    
+
     public SnacksServiceList() {
         snackSF = new SnacksServiceFile();
-        this.snackList = snackSF.RetrieveSnacks();
     }
 
     @Override
     public void AggregateSnack(Snack _snackToAdd) {
         Scanner scanner = new Scanner(System.in);
-        IO.println("""
-               *******Snack Creator**********
-               *Specify a name for the snack*
-                    """);
-        String newSnackName = scanner.nextLine();
+        String newSnackName;
+        //snackSF.LoadSnacksFromFile();
+        // 1. Validation Logic
+        while (true) {
+            IO.println("Specify a name for the snack:");
+            newSnackName = scanner.nextLine();
+
+            // Use Java Streams to check for duplicates cleanly
+            String finalName = newSnackName;
+            boolean alreadyExists = snackSF.RetrieveSnacks().stream()
+                    .anyMatch(s -> s.getSnackName().equalsIgnoreCase(finalName));
+
+            if (alreadyExists) {
+                IO.println("There is already a product with that name.");
+            } else {
+                break; // Exit loop if name is valid
+            }
+        }
+
+        // 2. Setting Data
         double newSnackPrice = GetValidPrice(scanner);
         _snackToAdd.setSnackName(newSnackName);
         _snackToAdd.setSnackPrice(newSnackPrice);
-        snackList.add(_snackToAdd);
+
+        // 3. Storing
         snackSF.AggregateSnack(_snackToAdd);
-        IO.println("Succesfully added snack to the list\n");
+
+        IO.println("Successfully added snack to the list\n");
     }
 
     @Override
     public void ShowSnackList() {
-        IO.println("Total snacks available:" + Snack.getSnackCounter() + "\n" +
-                """
+        IO.println("Total snacks available:" + Snack.getSnackCounter() + "\n"
+                + """
                 List of snacks
                 --------------------
                 """);
         snackSF.ShowSnackList();
-    }   
+    }
 
     @Override
     public List<Snack> RetrieveSnacks() {
         return snackSF.RetrieveSnacks();
     }
-    
+
     public double GetValidPrice(Scanner scanner) {
         try {
             IO.println("What's his price?");

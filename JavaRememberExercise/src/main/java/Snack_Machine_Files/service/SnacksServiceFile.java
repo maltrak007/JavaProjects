@@ -19,8 +19,14 @@ import java.util.Scanner;
  */
 public class SnacksServiceFile implements ISnacksService{
     private final String fileName = "inventory_snacks.txt";
-    private List<Snack> snackList = new ArrayList<>();
-    FileManagement fileManager = new FileManagement();
+    private final List<Snack> snackList;
+    private final FileManagement fileManager;
+
+    public SnacksServiceFile() {
+        this.fileManager = new FileManagement();
+        this.snackList = new ArrayList<>();
+        LoadSnacksFromFile();
+    }
     
     //Adds to the txt the new snacks
     @Override
@@ -28,6 +34,7 @@ public class SnacksServiceFile implements ISnacksService{
         File file = fileManager.CreateFile(fileName);
         try {
             fileManager.WriteFile(file, false, _snackToAdd.toString());
+            snackList.add(_snackToAdd);
         } catch (FileNotFoundException ex) {
             System.getLogger(SnacksServiceFile.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
@@ -47,6 +54,11 @@ public class SnacksServiceFile implements ISnacksService{
     //Reads the content of the txt and fill the private list
     @Override
     public List<Snack> RetrieveSnacks() {
+        return this.snackList;
+    }
+    
+    public void LoadSnacksFromFile()
+    {
         File file = fileManager.CreateFile(fileName);
         List<String> fileContent = fileManager.ReadFile(file);
         for(String line:fileContent)
@@ -55,8 +67,7 @@ public class SnacksServiceFile implements ISnacksService{
             String snackName = snackData[1];
             var snackPrice = snackData[2];
             Snack snackToFillData = new Snack(snackName, Double.parseDouble(snackPrice));
-            snackList.add(snackToFillData);
+            this.snackList.add(snackToFillData);
         }
-        return snackList;
     }
 }

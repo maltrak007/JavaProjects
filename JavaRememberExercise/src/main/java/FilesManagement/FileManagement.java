@@ -22,15 +22,11 @@ public class FileManagement {
     public File CreateFile(String _fileName) {
         File file = new File(_fileName);
         try {
-            if (file.exists()) {
-                //IO.println("The file already exits");
-                return file;
-            } else {
-                PrintWriter output = new PrintWriter(new FileWriter(file));
-                output.close();
-                //IO.println("The file was created succesfully");
-                return file;
+            if(file.createNewFile())
+            {
+                IO.println("File created succesfully");
             }
+            return file;
         } catch (IOException e) {
             IO.println("There was an error when creating the file" + e.getMessage());
             e.printStackTrace();
@@ -40,21 +36,7 @@ public class FileManagement {
 
     public List<String> ReadFile(File _fileToRead) {
         try {
-            //IO.println("File Content: ");
-            /*
-            BufferedReader input = new BufferedReader(new FileReader(file));
-            String line = input.readLine();
-            while(line != null)
-            {
-                IO.println(line);
-                line = input.readLine();
-            }
-            input.close();
-             */
-            List<String> fileContent = Files.readAllLines(Path.of(_fileToRead.getName()));
-            for (String line : fileContent) {
-                IO.println(line);
-            }
+            List<String> fileContent = Files.readAllLines(_fileToRead.toPath());
             return fileContent;
         } catch (IOException e) {
             IO.println("Error trying to read the file");

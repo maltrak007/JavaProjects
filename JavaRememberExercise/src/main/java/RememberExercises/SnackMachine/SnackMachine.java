@@ -2,10 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Snack_Machine_Files.presentation;
+package RememberExercises.SnackMachine;
 
-import Snack_Machine_Files.domain.Snack;
-import Snack_Machine_Files.service.SnacksServiceList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +19,7 @@ class SnackMachine {
     }
 
     public static void SnacksMachine() {
-        SnacksServiceList snacks = new SnacksServiceList();
+        Snacks snacks = new Snacks();
         ShowMenu();
         ExecuteOptions(snacks);
     }
@@ -38,7 +36,7 @@ class SnackMachine {
 
     }
 
-    private static void ExecuteOptions(SnacksServiceList _snacks) {
+    private static void ExecuteOptions(Snacks _snacks) {
         Boolean exitApp = false;
         List<Snack> userBasket = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -69,13 +67,8 @@ class SnackMachine {
         }
     }
 
-    private static void BuySnack(SnacksServiceList _machineSnacks, List<Snack> _userBasket, Scanner _scanner) {
+    private static void BuySnack(Snacks _machineSnacks, List<Snack> _userBasket, Scanner _scanner) {
         boolean continueBuying = true;
-        if(_machineSnacks.RetrieveSnacks().isEmpty())
-        {
-            IO.println("There are no snacks available");
-            return;
-        }
         while (continueBuying) {
             IO.println("Enter the snack ID to add it:");
             _machineSnacks.ShowSnackList();
@@ -83,11 +76,11 @@ class SnackMachine {
             for (Snack _snackToRetrieve : _machineSnacks.RetrieveSnacks()) {
                 if (userSnackOption == _snackToRetrieve.getIdSnack()) {
                     _userBasket.add(_snackToRetrieve);
-                    break;
+
+                    IO.println("Snack succesfully agregated\n Would you like to purchase another? (Y/N)");
+                    continueBuying = _scanner.nextLine().equalsIgnoreCase("Y");
                 }
             }
-            IO.println("Snack succesfully agregated\n Would you like to purchase another? (Y/N)");
-                    continueBuying = _scanner.nextLine().equalsIgnoreCase("Y");
         }
     }
 
@@ -101,7 +94,7 @@ class SnackMachine {
         IO.println("Total amount:" + totalAmount + "\n");
     }
 
-    private static void AddSnack(SnacksServiceList _snacks) {
+    private static void AddSnack(Snacks _snacks) {
         Snack newSnack = new Snack();
         _snacks.AggregateSnack(newSnack);
     }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Snack_Machine_Files.domain;
+package RememberExercises.SnackMachine;
 
 import java.util.Objects;
 
@@ -56,10 +56,9 @@ public class Snack {
     
     @Override
     public String toString() {
-        return idSnack + "|" + snackName+ "|" + snackPrice;
+        return "{" + "idSnack=" + idSnack + ", snackName=" + snackName + ", snackPrice=" + snackPrice + '}';
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 3;
